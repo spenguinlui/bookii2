@@ -1,0 +1,8 @@
+<h2>預約單號: <%= @booking_record.id %></h2>
+
+<p>預約時間: <%= @booking_record.created_at.strftime("%F") %></p>
+<p>預約房間: <%= @booking_record.room.hotel.name %> - <%= @booking_record.room.room_number %>房</p>
+
+<p>入住日期: <%= @booking_record.begin_date.strftime("%F") %></p>
+<p>退房日期: <%= @booking_record.end_date.strftime("%F") %></p>
+

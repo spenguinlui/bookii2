@@ -1,0 +1,49 @@
+<h2>會員專區</h2>
+<%= link_to '修改資料', edit_user_registration_path %>
+<p>會員餘額: <%= current_user.amount %> 元</p>
+<hr />
+<h3>我的預約</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>預約單號</th>
+      <th>預約飯店</th>
+      <th>房間號碼</th>
+      <th>預定時間</th>
+      <th>預約狀態</th>
+      <th>入住時間</th>
+      <th>退房時間</th>
+      <th>天數</th>
+      <th>入住人數</th>
+      <th>單價</th>
+      <th>總價</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @booking_records.each do |booking_record| %>
+      <tr>
+        <td><%= booking_record.id %></td>
+        <td><%= booking_record.room.hotel.name %></td>
+        <td><%= booking_record.room.room_number %></td>
+        <td><%= booking_record.created_at.strftime("%F") %></td>
+        <td><%= booking_record.status %></td>
+        <td><%= booking_record.begin_date.strftime("%F") %></td>
+        <td><%= booking_record.end_date.strftime("%F") %></td>
+        <td><%= booking_record.booking_days %></td>
+        <td><%= booking_record.person_count %></td>
+        <td><%= booking_record.price %></td>
+        <td><%= booking_record.total_price %></td>
+        <td><%= link_to '詳細', user_booking_record_path(current_user, booking_record) %></td>
+        <td>
+          <% if booking_record.pending? || booking_record.reserving? %>
+            <%= link_to '取消', cancel_user_booking_record_path(current_user, booking_record), method: 'POST' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

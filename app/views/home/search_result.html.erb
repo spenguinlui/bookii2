@@ -1,0 +1,9 @@
+<h2>搜尋結果</h2>
+<% @rooms.each do |room| %>
+  <div>
+    <p>飯店: <%= room.hotel.name %></p>
+    <p>房號: <%= room.room_number %></p>
+    <p>房間類型: <%= room.room_type.room_type_zh %></p>
+    <p>價格: <%= room.price %></p>
+  </div>
+<% end %>

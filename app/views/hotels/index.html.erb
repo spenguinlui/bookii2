@@ -1,0 +1,26 @@
+<h2>飯店清單</h2>
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>名稱</th>
+      <th>類型</th>
+      <th>代號</th>
+      <th>說明</th>
+      <th>房間列表</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hotels.each do |hotel| %>
+      <tr>
+        <td><%= hotel.id %></td>
+        <td><%= hotel.name %></td>
+        <td><%= hotel.hotel_type.hotel_type_zh %></td>
+        <td><%= hotel.code %></td>
+        <td><%= hotel.description %></td>
+        <td><%= link_to '房間', hotel_rooms_path(hotel) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

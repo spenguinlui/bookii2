@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: hotels
+#
+#  id            :integer          not null, primary key
+#  code          :string
+#  description   :string
+#  name          :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  hotel_type_id :integer          not null
+#
+# Indexes
+#
+#  index_hotels_on_hotel_type_id  (hotel_type_id)
+#
+# Foreign Keys
+#
+#  hotel_type_id  (hotel_type_id => hotel_types.id)
+#
+
+one:
+  name: MyString
+  code: MyString
+  description: MyString
+  hotel_type: one
+
+two:
+  name: MyString
+  code: MyString
+  description: MyString
+  hotel_type: two

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>名稱:</strong>
+  <%= @hotel.name %>
+</p>
+
+<p>
+  <strong>類型:</strong>
+  <%= @hotel.hotel_type.hotel_type_zh %>
+</p>
+
+<p>
+  <strong>代碼:</strong>
+  <%= @hotel.code %>
+</p>
+
+<p>
+  <strong>現有房間:</strong>
+  <ul>
+    <% @hotel.rooms.map do |room| %>
+      <li>
+        <span><%= link_to room.room_number, admin_hotel_room_path(@hotel, room) %></span>
+        <span style="margin-left: 10px;"><%= room.booking_records[0].booking_record_datetime if room.booking_records.count > 0 %></span>
+      </li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <strong>最大房間:</strong>
+  <%= @hotel.total_count %>
+</p>
+
+<p>
+  <strong>說明:</strong>
+  <%= @hotel.description %>
+</p>
+
+<%= link_to '編輯', edit_admin_hotel_path(@hotel) %> |
+<%= link_to '返回', admin_hotels_path %>

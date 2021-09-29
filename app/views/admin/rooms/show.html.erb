@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @room.hotel.name %></h1>
+
+<p>
+  <strong>房間號碼:</strong>
+  <%= @room.room_number %>
+</p>
+
+<p>
+  <strong>房間類型:</strong>
+  <%= @room.room_type.room_type_zh %>
+</p>
+
+<p>
+  <strong>房間單價:</strong>
+  <%= @room.price %>
+</p>
+
+<%= link_to '返回飯店資訊', admin_hotel_path(@hotel) %> |
+<%= link_to '編輯', edit_admin_hotel_room_path(@hotel, @room) %> |
+<%= link_to '刪除', admin_hotel_room_path,  method: :delete, data: { confirm: '確定刪除房間?' } %>

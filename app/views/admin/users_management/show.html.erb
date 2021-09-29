@@ -1,0 +1,63 @@
+<h2>使用者資訊</h2>
+
+<h3>編輯使用者</h3>
+<%= form_tag({controller: 'admin/users_management', action: 'update'}, method: 'PATCH') do %>
+  <div class="field">
+    <%= label_tag :name, '使用者姓名' %>
+    <%= text_field_tag :name, @user.name %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :email, '連絡信箱' %>
+    <%= email_field_tag :email, @user.email %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :amount, '剩餘金額' %>
+    <%= number_field_tag :amount, @user.amount %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag '更新' %>
+  </div>
+<% end %>
+<hr />
+
+<h3>使用者儲值</h3>
+<%= form_tag({controller: 'admin/users_management', action: 'deposit'}, method: 'POST') do %>
+  <p>現有金額: <%= @user.amount %></p>
+  <div class="field">
+    <%= label_tag :amount, '儲值金額' %>
+    <%= number_field_tag :amount, 0 %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag '儲值' %>
+  </div>
+<% end %>
+
+<h3>交易紀錄</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>交易類型</th>
+      <th>異動額度</th>
+      <th>交易前</th>
+      <th>交易後</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transaction_records.each do |transaction_record| %>
+      <tr>
+        <td><%= transaction_record.id %></td>
+        <td><%= transaction_record.transaction_type_zh %></td>
+        <td><%= transaction_record.transaction_amount %> 元</td>
+        <td><%= transaction_record.origin_amount %> 元</td>
+        <td><%= transaction_record.final_amount %> 元</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,43 @@
+# == Schema Information
+#
+# Table name: booking_records
+#
+#  id           :integer          not null, primary key
+#  begin_date   :datetime
+#  end_date     :datetime
+#  person_count :integer          default(1)
+#  price        :integer
+#  status       :integer          default("pending")
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  room_id      :integer          not null
+#  user_id      :integer          not null
+#
+# Indexes
+#
+#  index_booking_records_on_room_id  (room_id)
+#  index_booking_records_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  room_id  (room_id => rooms.id)
+#  user_id  (user_id => users.id)
+#
+
+one:
+  status: MyString
+  person_count: 1
+  price: 1
+  begin_date: 2021-08-18 10:25:25
+  end_date: 2021-08-18 10:25:25
+  room: one
+  user: one
+
+two:
+  status: MyString
+  person_count: 1
+  price: 1
+  begin_date: 2021-08-18 10:25:25
+  end_date: 2021-08-18 10:25:25
+  room: two
+  user: two

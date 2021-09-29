@@ -1,0 +1,36 @@
+<h2>預約記錄</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>預約單號</th>
+      <th>狀態</th>
+      <th>預約人</th>
+      <th>預約飯店</th>
+      <th>預約房號</th>
+      <th>房型</th>
+      <th>入住日期</th>
+      <th>退房日期</th>
+      <th>人數</th>
+      <th>成立時間</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @booking_records.each do |booking_record| %>
+      <tr>
+        <td><%= booking_record.id %></td>
+        <td><%= booking_record.status %></td>
+        <td><%= booking_record.user.name %></td>
+        <td><%= booking_record.room.hotel.name %></td>
+        <td><%= booking_record.room.room_number %></td>
+        <td><%= booking_record.room.room_type.room_type_zh %></td>
+        <td><%= booking_record.begin_date.strftime("%F") %></td>
+        <td><%= booking_record.end_date.strftime("%F") %></td>
+        <td><%= booking_record.person_count %></td>
+        <td><%= booking_record.created_at.strftime("%F") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

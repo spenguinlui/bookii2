@@ -1,0 +1,26 @@
+<h1>建立新房間</h1>
+
+<%= form_for([:admin, @hotel ,@room]) do |f| %>
+  <%= f.hidden_field :hotel_id, value: @room.hotel_id %>
+  <div class="field">
+    <%= f.label :room_number %>
+    <%= f.text_field :room_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :room_type %>
+    <%= f.select :room_type, options_for_select(Roomtype.room_types.map{ |key, value| [key.titleize, Roomtype.room_types.key(value)]}, Roomtype.room_types) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to '返回飯店', admin_hotel_path(@room.hotel_id) %>

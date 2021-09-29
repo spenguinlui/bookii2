@@ -1,0 +1,53 @@
+<h2>預約 <%= @hotel.name %>: <%= @room.room_number %>房</h2>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<% if !@has_reservation %>
+  <%= form_with url: booking_hotel_room_path do |form| %>
+    <div class="field">
+      <%= form.label :begin_datetime %>
+      <%= form.date_field :begin_datetime %>
+    </div>
+    <div class="field">
+      <%= form.label :end_datetime %>
+      <%= form.date_field :end_datetime %>
+    </div>
+    <div class="field">
+      <%= form.label :person_count, "入住人數" %>
+      <%= form.number_field :person_count, value: 1 %>
+    </div>
+    <div class="field">
+      <%= form.submit "預約" %>
+    </div>
+  <% end %>
+<% end %>
+
+<h2>過往預約記錄</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>預約時間</th>
+      <th>預約狀態</th>
+      <th>入住人數</th>
+      <th>入住日</th>
+      <th>退房日</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @room.booking_records.each do |record| %>
+      <tr>
+        <td><%= record.created_at.strftime("%F") %></td>
+        <td><%= record.status %></td>
+        <td><%= record.person_count %></td>
+        <td><%= record.begin_date.strftime("%F") %></td>
+        <td><%= record.end_date.strftime("%F") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

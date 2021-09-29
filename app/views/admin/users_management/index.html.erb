@@ -1,0 +1,29 @@
+<h1>使用者管理</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>姓名</th>
+      <th>Email</th>
+      <th>餘額</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.amount %> 元</td>
+        <td><%= link_to '編輯', admin_users_management_path(user) %></td>
+        <td><%= link_to '刪除', user_registration_path, method: :delete, data: { confirm: '確定刪除使用者?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '新增使用者', new_user_registration_path %>

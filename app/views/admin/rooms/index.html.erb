@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>房間列表</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>房號</th>
+      <th>房間類型</th>
+      <th>價格</th>
+      <th>所屬飯店</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td><%= room.room_number %></td>
+        <td><%= room.room_type.room_type_zh %></td>
+        <td><%= room.price %></td>
+        <td><%= room.hotel_id %></td>
+        <td><%= link_to 'Show', admin_hotel_room_path(@hotel ,@room) %></td>
+        <td><%= link_to 'Edit', edit_admin_hotel_room_path(@hotel ,@room) %></td>
+        <td><%= link_to 'Destroy', admin_hotel_room_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Room', new_room_path %>
